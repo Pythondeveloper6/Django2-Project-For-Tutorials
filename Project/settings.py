@@ -37,6 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'bootstrap4',
+    'ckeditor',
+    'markdown_deux',
+    'widget_tweaks',
+    'django_summernote',
+    # 'tracking',
+
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +127,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR , 'static'),
+    )
+
+
+# STATIC_ROOT = '/var/www/static-root/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR , 'static'),
+    )
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}

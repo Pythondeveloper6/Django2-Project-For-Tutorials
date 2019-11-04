@@ -1,0 +1,103 @@
+
+{% extends "base.html" %}
+  {% block body %}
+
+
+          <div class="fixed-top">
+            <h3 class="title">{{post.title}}</h3>
+            <ul class="tags">
+              {% for tag in post.split_tag %}
+              <li><a> #{{tag}} </a></li>
+              {% endfor %}
+            </ul>
+            <div class="break"></div>
+            <p> <i class="typcn typcn-calendar post_nav" data-toggle="tooltip" data-placement="top" title="puplich date"></i> {{post.created|date:"D M j"}}</p>
+            <div class="break"></div>
+              <p> <i class="typcn typcn-time post_nav" data-toggle="tooltip" data-placement="top" title="puplich date"></i> {{post.read_time}} Minutes To Read</p>
+            <div class="break"></div>
+            <div class="visit-counter">
+                <i class="typcn typcn-eye post_nav" data-toggle="tooltip" data-placement="top" title="Visits"></i>
+                {{post.visits}} Visitor
+            </div>
+          </div>
+
+          <div class="content-i">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-2 post-sidebar">
+                    <ul class="lesson_tools">
+                      <li>
+                        <span id="like_section">
+                            {% include "like_section.html" %}
+                        </span>
+                      </li>
+                      <li>
+
+                        <span id="read_section">
+                            {% include "read_section.html" %}
+                        </span>
+
+                      </li>
+                      <li class="clap social">
+                        <a href="#"><i class="typcn typcn-social-facebook">
+
+                        </i></a>
+                      </li>
+                      <li class="clap social">
+                        <a href=""><i class="typcn typcn-social-twitter"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-10 post-body">
+                      <p >{{post.content|safe}}</p>
+
+                    <hr>
+                    {% if next_article or pre_article %}
+                    <ul class="pager">
+                      {% if next_article %}
+                         <li class="next next-prev"><a href="{% url 'blog:detail' slug=next_article.slug %}"><i class="fas fa-angle-double-right"></i> {{next_article.title}}</a></li>
+
+                      {% endif %}
+                      {% if pre_article %}
+                          <li class="previous next-prev"><a href="{% url 'blog:detail' slug=pre_article.slug %}">{{pre_article.title}} <i class="fas fa-angle-double-left"></i> </a></li>
+                      {% endif %}
+                    </ul>
+                    {% endif %}
+
+                    <hr>
+
+
+                  </div>
+                </div>
+                .<div class="row">
+                  <div class="col-md-12">
+                    <div id="disqus_thread"></div>
+                    <script>
+
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+                    var disqus_config = function () {
+                    this.page.url = 'http://127.0.0.1:8000/blog/{{post.slug}}';
+                    // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '/{{post.slug}}/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://code4learn-1.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+                  </div>
+
+                </div>
+              </div>
+          </div>
+
+
+{% endblock %}

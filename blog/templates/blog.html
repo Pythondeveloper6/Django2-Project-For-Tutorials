@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+  {% block body %}
+
+
+  <div class="top-menu-secondary">
+    <ul>
+      <li class="active">
+        <a href="#">BLOG</a>
+      </li>
+    </ul>
+  </div>
+  <div class="content-i">
+    <div class="content-box">
+      <div class="row">
+        <!-- col starts here -->
+        {% for post in blog %}
+        <div class="col-lg-4">
+          <div class="padded-lg">
+            <div class="projects-list">
+              <div class="project-box">
+                <div class="project-head">
+                  <img src="{{post.image.url}}" alt="">
+                </div>
+                <div class="project-info">
+                  <div class="project-title text-center col-xs-12">
+                    <h5>
+                      <a href="{% url 'blog:detail' slug=post.slug %}">{{post.title}}</a>
+
+                    </h5>
+                    <small><i class="far fa-calendar-check"></i>{{post.created|date:"D M j"}}</small>
+                    <ul class="tags">
+                      {% for tag in post.split_tag %}
+                      <li><a> #{{tag}} </a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+
+   {%  if blog.has_other_pages %}
+      <div class="contain-pagination">
+        {%  if blog.has_other_pages %}
+        <div class="controls-below-table">
+          <div class="table-records-info">
+          </div>
+          <div class="table-records-pages">
+            <ul>
+               {% if blog.has_previous %}
+              <li><a href="?page={{ blog.previous_page_number }}">Previous</a></li>
+              {% else %}
+                <li class="disabled"></li>
+              {% endif %}
+
+              {% for pages in blog.paginator.page_range %}
+                  {% if blog.number == pages %}
+                      <li><a class="current" href="#">{{pages}}</a></li>
+                  {% else %}
+                      <li>  <a href="?page={{pages}}">{{pages}}</a></li>
+                  {% endif %}
+              {% endfor %}
+              {% if blog.has_next %}
+              <li><a href="?page={{ blog.next_page_number }}">Next</a></li>
+              {% else %}
+                 <li class="disabled"><span>&raquo;</span></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+       {% endif %}
+    </div>
+  </div>
+
+
+
+{% endblock %}
