@@ -38,14 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'bootstrap4',
-    'ckeditor',
-    'markdown_deux',
-    'widget_tweaks',
-    'django_summernote',
-    # 'tracking',
 
-    'blog',
 ]
 
 MIDDLEWARE = [
@@ -139,11 +132,11 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR , 'static'),
     )
 
-CKEDITOR_UPLOAD_PATH = "uploads/"
+# CKEDITOR_UPLOAD_PATH = "uploads/"
 
 
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': None,
-    },
-}
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'toolbar': None,
+#     },
+# }
