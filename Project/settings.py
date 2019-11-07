@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'movies',
 
 ]
 
@@ -131,12 +132,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR , 'static'),
     )
-
-# CKEDITOR_UPLOAD_PATH = "uploads/"
-
-
-# CKEDITOR_CONFIGS = {
-#     'default': {
-#         'toolbar': None,
-#     },
-# }
